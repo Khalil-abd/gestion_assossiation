@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% form_theme missionForm 'bootstrap_5_layout.html.twig' %}
+{% block title %}
+	{% if editMode %}
+		Modifier une mission
+	{% else %}
+		Ajouter une mission
+	{% endif %}
+{% endblock %}
+{% block body %}
+	<h1 class="row">
+		{% if editMode %}
+			Modification d'une mission
+		{% else %}
+			Ajout d'une nouvelle mission
+		{% endif %}
+	</h1>
+	<div class="row">
+		{{ form_start(missionForm,{'attr': {'class': 'col-lg-5 align-items-center'}}) }}
+		{{ form_row(missionForm.titre) }}
+		{{ form_row(missionForm.adherent) }}
+		<button type="submit" class="btn btn-success">
+			{% if editMode %}
+				Modifier mission
+			{% else %}
+				Ajouter mission
+			{% endif %}
+		</button>
+		{{ form_end(missionForm) }}
+	</div>
+	<br><br>
+{% endblock %}

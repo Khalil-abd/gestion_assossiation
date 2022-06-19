@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+{% form_theme evenementForm 'bootstrap_5_layout.html.twig' %}
+{% block title %}
+	{% if editMode %}
+		Modifier un événement
+	{% else %}
+		Ajouter un événement
+	{% endif %}
+{% endblock %}
+{% block body %}
+	<h1 class="row">
+		{% if editMode %}
+			Modification d'un événement
+		{% else %}
+			Ajout d'un nouveau événement
+		{% endif %}
+	</h1>
+	<div class="row">
+		{{ form_start(evenementForm,{'attr': {'class': 'col-lg-5 align-items-center'}}) }}
+		{{ form_row(evenementForm.titre) }}
+		{{ form_row(evenementForm.dateDebut) }}
+		{{ form_row(evenementForm.dateFin) }}
+		{{ form_row(evenementForm.description) }}
+		<button type="submit" class="btn btn-success">
+			{% if editMode %}
+				Modifier événement
+			{% else %}
+				Ajouter événement
+			{% endif %}
+		</button>
+		{{ form_end(evenementForm) }}
+	</div>
+	<br><br>
+{% endblock %}

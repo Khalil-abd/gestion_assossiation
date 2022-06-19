@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% form_theme adherentForm 'bootstrap_5_layout.html.twig' %}
+{% block title %}
+	{% if editMode %}
+		Modifier un adhérent
+	{% else %}
+		Ajouter un adhérent
+	{% endif %}
+{% endblock %}
+{% block body %}
+	<h1 class="row">
+		{% if editMode %}
+			Modification d'un adhérent
+		{% else %}
+			Ajout d'un nouveau adhérent
+		{% endif %}
+	</h1>
+	<div class="row">
+		{{ form_start(adherentForm,{'attr': {'class': 'col-lg-5 align-items-center'}}) }}
+		{{ form_row(adherentForm.nom) }}
+		{{ form_row(adherentForm.prenom) }}
+		{{ form_row(adherentForm.cin) }}
+		{{ form_row(adherentForm.dateNaissance) }}
+		{{ form_row(adherentForm.adresse) }}
+		{{ form_row(adherentForm.phone) }}
+		<button type="submit" class="btn btn-success">
+			{% if editMode %}
+				Modifier adhérent
+			{% else %}
+				Ajouter adhérent
+			{% endif %}
+		</button>
+		{{ form_end(adherentForm) }}
+	</div>
+	<br><br>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% form_theme membreForm 'bootstrap_5_layout.html.twig' %}
+{% block title %}
+	{% if editMode %}
+		Modifier un membre
+	{% else %}
+		Ajouter un membre
+	{% endif %}
+{% endblock %}
+{% block body %}
+	<h1 class="row">
+		{% if editMode %}
+			Modification d'un membre
+		{% else %}
+			Ajout d'un nouveau membre
+		{% endif %}
+	</h1>
+	<div class="row">
+		{{ form_start(membreForm,{'attr': {'class': 'col-lg-5 align-items-center'}}) }}
+		{{ form_row(membreForm.nom) }}
+		{{ form_row(membreForm.prenom) }}
+		{{ form_row(membreForm.cin) }}
+		{{ form_row(membreForm.dateNaissance) }}
+		{{ form_row(membreForm.adresse) }}
+		{{ form_row(membreForm.phone) }}
+		{{ form_row(membreForm.role) }}
+		<button type="submit" class="btn btn-success">
+			{% if editMode %}
+				Modifier membre
+			{% else %}
+				Ajouter membre
+			{% endif %}
+		</button>
+		{{ form_end(membreForm) }}
+	</div>
+	<br><br>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Evénements
+{% endblock %}
+
+{% block body %}
+	<h3 class="row">Liste des événements</h2>
+	<div class="d-flex flex-row-reverse">
+		<a href="{{ path('add_evenement') }}" class="btn btn-success">Nouveau événement</a>
+	</div>
+	<p></p>
+	<div class="row">
+		<table class="table table-bordered">
+			<thead class="table-primary">
+				<tr>
+					<th>Titre</th>
+					<th>Date de début</th>
+					<th>Date de fin</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for evenement in evenements %}
+					<tr>
+						<td>{{evenement.titre}}</td>
+						<td>{{evenement.dateDebut |  date('d/m/Y')}}</td>
+						<td>{{evenement.dateFin |  date('d/m/Y')}}</td>
+						<td>
+							<a class="btn btn-primary" href="{{path('show_evenement',{'id': evenement.id})}}">Show</a>
+							<a class="btn btn-success" href="{{ path('edit_evenement', {'id': evenement.id}) }}">
+								Modifier</a>
+							<a class="btn btn-danger" href="{{ path('delete_evenement', {'id': evenement.id }) }}">Supprimer</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

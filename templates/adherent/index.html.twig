@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Adhérents
+{% endblock %}
+
+{% block body %}
+	<h3 class="row">Liste des adhérents</h2>
+	<div class="d-flex flex-row-reverse">
+		<a href="{{ path('add_adherent') }}" class="btn btn-success">Nouveau Adhérent</a>
+	</div>
+	<p></p>
+	<div class="row">
+		<table class="table table-bordered">
+			<thead class="table-primary">
+				<tr>
+					<th>Nom</th>
+					<th>Prenom</th>
+					<th>CIN</th>
+					<th>Date de naissance</th>
+					<th>Phone</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for adherent in adherents %}
+					<tr>
+						<td>{{adherent.nom}}</td>
+						<td>{{adherent.prenom}}</td>
+						<td>{{adherent.cin}}</td>
+						<td>{{adherent.dateNaissance |  date('d/m/Y')}}</td>
+						<td>{{adherent.phone}}</td>
+						<td>
+							<a class="btn btn-success" href="{{ path('edit_adherent', {'id': adherent.id}) }}">
+								Modifier</a>
+							<a class="btn btn-danger" href="{{ path('delete_adherent', {'id': adherent.id }) }}">Supprimer</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% form_theme bureauForm 'bootstrap_5_layout.html.twig' %}
+{% block title %}
+	{% if editMode %}
+		Modifier un bureau
+	{% else %}
+		Ajouter un bureau
+	{% endif %}
+{% endblock %}
+{% block body %}
+	<h1 class="row">
+		{% if editMode %}
+			Modification d'un bureau
+		{% else %}
+			Ajout d'un nouveau bureau
+		{% endif %}
+	</h1>
+	<div class="row">
+		{{ form_start(bureauForm,{'attr': {'class': 'col-lg-5 align-items-center'}}) }}
+		{{ form_row(bureauForm.dateDebut) }}
+		{{ form_row(bureauForm.dateFin) }}
+		<button type="submit" class="btn btn-success">
+			{% if editMode %}
+				Modifier bureau
+			{% else %}
+				Ajouter bureau
+			{% endif %}
+		</button>
+		{{ form_end(bureauForm) }}
+	</div>
+	<br><br>
+{% endblock %}

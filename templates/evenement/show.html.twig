@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Evénement
+{% endblock %}
+{% block body %}
+	<h3 class="row h3">Informations sur l'événement</h3>
+	<div class="row">
+		<div class="col-lg-7">
+			<table class="table table-bordered">
+				<tr>
+					<td class="bg-primary">
+						<b class="text-light">Titre :</b>
+					</td>
+					<td>{{ evenement.titre }}</td>
+				</tr>
+				<tr>
+					<td class="bg-primary">
+						<b class="text-light">Date de début :</b>
+					</td>
+					<td>
+						{{evenement.dateDebut | date('d/m/Y')}}
+					</td>
+				</tr>
+				<tr>
+					<td class="bg-primary">
+						<b class="text-light">Date de fin :</b>
+					</td>
+					<td>{{evenement.dateFin | date('d/m/Y')}}</td>
+				</tr>
+				<tr>
+					<td class="bg-primary">
+						<b class="text-light">Description :</b>
+					</td>
+					<td>{{evenement.description}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<h3 class="row h3">Liste des missions</h3>
+	<div class="d-flex flex-row-reverse">
+		<a href="{{path('add_mission',{'id': evenement.id})}}" class="btn btn-success">Nouvelle mission</a>
+	</div>
+	<p></p>
+	<div class="row">
+		<table class="table table-bordered">
+			<thead class="table-primary">
+				<tr>
+					<th>Titre</th>
+					<th>Responsable</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for mission in evenement.missions %}
+					<tr>
+						<td>{{mission.titre}}</td>
+						<td>
+							{% if mission.adherent %}
+								{{mission.adherent.nom ~ " " ~ mission.adherent.prenom}}
+							{% endif %}
+						</td>
+						<td>
+							<a class="btn btn-success" href="{{ path('edit_mission', {'id': evenement.id , 'mission_id': mission.id}) }}">
+								Modifier</a>
+							<a class="btn btn-danger" href="{{ path('delete_mission', {'id': mission.id }) }}">Supprimer</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}
